@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Sistema.laboratorio.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioPass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioNivel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioPass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioNivel)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

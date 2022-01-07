@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Sistema.laboratorio;
 using Sistema.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Sistema.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly laboratorioContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, laboratorioContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
