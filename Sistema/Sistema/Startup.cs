@@ -27,6 +27,9 @@ namespace Sistema
         {
             services.AddControllersWithViews();
             services.AddDbContext<laboratorioContext>(options => options.UseMySQL(Configuration.GetConnectionString("Default")));
+            services.AddRazorPages();
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<laboratorioContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +49,7 @@ namespace Sistema
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -54,6 +57,7 @@ namespace Sistema
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

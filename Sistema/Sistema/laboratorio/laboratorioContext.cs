@@ -1,12 +1,13 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+
 
 #nullable disable
 
 namespace Sistema.laboratorio
 {
-    public partial class laboratorioContext : DbContext
+    public partial class laboratorioContext : IdentityDbContext<AppUser>
     {
         readonly string connectionString;
 
@@ -34,6 +35,8 @@ namespace Sistema.laboratorio
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Medico>(entity =>
             {
                 entity.ToTable("medicos");
