@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Demo.Models.Entidades.Paciente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4 align-middle d-flex align-items-center">
+        <div class="col-6 container">
+            <h1 class="text-primary">Listado de Pacientes</h1>
+        </div>
+        <div class="col-6 text-end container">
+            <a asp-action="Create" class="btn-primary btn btn-lg fw-bold">Crear</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteId)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteNombre)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteEmail)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteTelefono)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteDni)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteFechaNac)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PacienteSexo)
+                </th>
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="col">
+                        @Html.DisplayFor(modelItem => item.PacienteId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteTelefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteDni)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteFechaNac)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PacienteSexo)
+                    </td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

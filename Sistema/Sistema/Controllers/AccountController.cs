@@ -10,14 +10,14 @@ namespace Sistema.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<AppUser> UserMgr { get; }
+        private UserManager<AppUser> _userManager { get; }
 
-        private SignInManager<AppUser> SignInMgr { get; }
+        private SignInManager<AppUser> _signInManager { get; }
 
         public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
         {
-            UserMgr = userManager;
-            SignInMgr = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
     }
 }

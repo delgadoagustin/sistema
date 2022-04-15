@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Demo.Models.Entidades.Informe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4 align-middle d-flex align-items-center">
+        <div class="col-6 container">
+            <h1 class="text-primary">Listado de Informes</h1>
+        </div>
+        <div class="col-6 text-end container">
+            <a asp-action="Create" class="btn-primary btn btn-lg fw-bold">Crear</a>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3">
+    <form class="input-group" asp-action="Index" asp-controller="Informe" method="get">
+        <input type="search" class="form-control rounded" id="busqueda" placeholder="Buscar" name="busqueda" value="" />
+        <button type="submit" value="busqueda" class="btn btn-primary">Buscar</button>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.InformeId)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.InformePacienteId)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.InformeUsuarioId)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.InformeDetalle)
+                </th>
+                <th scope="col"></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.InformeId)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InformePacienteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InformeUsuarioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InformeDetalle)
+                </td>
+                <td>
+                    <form asp-action="Details" method="post">
+                        <input type="number" name="id" value=@item.InformeId hidden />
+                        <input class="btn-sm btn-outline-primary btn-rounded" type="submit" value="Ver Informe" />
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="ExportPDF" method="post">
+                        <input type="number" name="id" value=@item.InformeId hidden />
+                        <input class="btn-sm btn-outline-success btn-rounded" type="submit" value="Exportar" />
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <input type="number" name="id" value=@item.InformeId hidden />
+                        <input class="btn-sm btn-outline-danger btn-rounded" type="submit" value="Eliminar" />
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>    
+</div>
+<form asp-action="ExportCVS" method="post">
+    <input class="m-3 btn-lg btn-success btn-rounded" type="submit" value="Exportar Infomes en Excel" />
+</form>

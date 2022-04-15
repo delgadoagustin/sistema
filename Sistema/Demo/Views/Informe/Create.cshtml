@@ -1,0 +1,59 @@
+﻿@model Demo.Models.ViewModels.InformeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Agregar Informe</h1>
+
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-outline mb-3" hidden>
+                <input asp-for="informe.InformeId" class="form-control" />
+                <label asp-for="informe.InformeId" class="form-label"></label>
+                <span asp-validation-for="informe.InformeId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-3">
+                <select class="form-select" asp-for="informe.InformePacienteId">
+                    <option selected>Seleccionar Paciente</option>
+                    @foreach (var element in Model.pacientes)
+                    {
+                        <option value="@element.PacienteId">@element.PacienteNombre</option>
+                    }
+                </select>
+                <span asp-validation-for="informe.InformePacienteId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-3">
+                <select class="form-select" asp-for="informe.InformeUsuarioId">
+                    <option selected>Seleccionar Medico</option>
+                    @foreach (var element in Model.usuarios)
+                    {
+                        <option value="@element.UsuarioId">@element.UsuarioNombre</option>
+                    }
+                </select>
+                <span asp-validation-for="informe.InformeUsuarioId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" asp-for="informe.InformeDetalle" rows="4" placeholder="Detalle"></textarea>
+                <label class="form-label" asp-for="informe.InformeDetalle" hidden></label>
+                <span asp-validation-for="informe.InformeDetalle" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-3">
+                <label></label>
+                <input type="file" accept="image/*" name="image" value="" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Volver a la Lista</a>
+        </div>
+    </div>
+</div>
+
+
